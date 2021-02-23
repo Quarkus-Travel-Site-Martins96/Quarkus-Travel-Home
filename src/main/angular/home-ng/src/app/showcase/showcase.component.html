@@ -1,0 +1,29 @@
+<div class="showcase">
+	<div class="title">
+		<h3>Our showcase</h3>
+	</div>
+
+	<div class="content">
+		<div *ngFor="let prod of showcase.products" class="product">
+			<div class="product-section">
+				<img class="hotel-preview" src='{{ prod.image }}'
+					alt="MyHotel {{ prod.title }}" />
+			</div>
+			<h1>{{ prod.title }}</h1>
+			<div class="product-section">
+				<div class="description">
+					<p>{{ prod.description }}</p>
+				</div>
+			</div>
+			<div class="product-section">
+				<div class="location">
+					<span>{{ prod.location }}</span>
+				</div>
+				<div class="basic-price">
+					<span>Start from <b>{{ prod.basicPrice }} Euro</b></span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>

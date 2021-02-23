@@ -1,0 +1,33 @@
+<div class="offers">
+	<div class="title">
+		<h3>Our best offers!</h3>
+	</div>
+
+	<div class="content">
+		<div class="row">
+			<div *ngFor="let off of offers.products" class="product">
+				<div class="product-section">
+					<img class="hotel-preview" src='{{ off.image }}' alt="MyHotel {{ off.title }}" />
+				</div>
+				<h1>{{ off.title }}</h1>
+				<div class="product-section">
+					<div class="description">
+						<p>{{ off.description }}</p>
+					</div>
+				</div>
+				<div class="product-section">
+					<div class="location">
+						<span>{{ off.location }}</span>
+					</div>
+					<div class="basic-price">
+						<span>Offer price: <b><s>{{ off.basicPrice }}</s> 
+								{{ off.offerPrice }} Euro</b></span>
+					</div>
+				</div>
+			</div>
+			<div class="clear">
+				&nbsp;
+			</div>
+		</div>
+	</div>
+</div>
