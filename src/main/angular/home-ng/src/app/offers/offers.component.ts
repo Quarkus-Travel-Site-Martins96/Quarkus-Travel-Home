@@ -4,9 +4,10 @@ import { RestService } from '../rest-service';
 import { host } from '../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { OfferVO } from '../vo/offer-vo';
+import { urlHotelBase } from 'src/environments/environment.prod';
 
 
-const homeUrl: string = 'http://' + host + '/home/offers';
+const homeUrl: string =  host + '/home/offers';
 
 
 @Component({
@@ -17,6 +18,7 @@ const homeUrl: string = 'http://' + host + '/home/offers';
 export class OffersComponent implements OnInit {
 	offers: OfferVO = new OfferVO();
 	error: string;
+	urlHotel: string = urlHotelBase + '/?hotel-id=';
 	
 	private sub: Subscription;
 

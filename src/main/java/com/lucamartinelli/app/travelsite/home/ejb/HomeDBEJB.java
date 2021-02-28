@@ -30,8 +30,8 @@ public class HomeDBEJB implements HomeEJB {
 	Logger log;
 	
 
-    private final String SQL_QUERY_SHOWCASE =  "SELECT * FROM showcase_products";
-    private final String SQL_QUERY_OFFERS =  "SELECT * FROM offer_products";
+    private final String SQL_QUERY_SHOWCASE =  "SELECT h.*, o.* FROM hotels AS h INNER JOIN showcase_products AS o ON h.HOTEL_ID = o.HOTEL_ID;";
+    private final String SQL_QUERY_OFFERS =  "SELECT h.*, o.* FROM hotels AS h INNER JOIN offer_products AS o ON h.HOTEL_ID = o.HOTEL_ID;";
 	
 	@Override
 	@Fallback(fallbackMethod = "showcaseFallback")
@@ -54,9 +54,9 @@ public class HomeDBEJB implements HomeEJB {
 	        	ShowcaseProductVO p = new ShowcaseProductVO();
 	        	p.setHotelID(rs.getString("HOTEL_ID"));
 	        	p.setTitle(rs.getString("TITLE"));
-	        	p.setDescription(rs.getString("DESCRIPTION"));
+	        	p.setDescription(rs.getString("SHORT_DESCRIPTION"));
 	        	p.setLocation(rs.getString("LOCATION"));
-	        	p.setImage(rs.getString("IMAGE"));
+	        	p.setImage(rs.getString("PREVIEW_IMAGE"));
 	        	p.setBasicPrice(rs.getDouble("BASIC_PRICE"));
 	        	
 	        	products.add(p);
@@ -97,9 +97,9 @@ public class HomeDBEJB implements HomeEJB {
 	        	OfferProductVO p = new OfferProductVO();
 	        	p.setHotelID(rs.getString("HOTEL_ID"));
 	        	p.setTitle(rs.getString("TITLE"));
-	        	p.setDescription(rs.getString("DESCRIPTION"));
+	        	p.setDescription(rs.getString("SHORT_DESCRIPTION"));
 	        	p.setLocation(rs.getString("LOCATION"));
-	        	p.setImage(rs.getString("IMAGE"));
+	        	p.setImage(rs.getString("PREVIEW_IMAGE"));
 	        	p.setBasicPrice(rs.getDouble("BASIC_PRICE"));
 	        	p.setOfferPrice(rs.getDouble("OFFER_PRICE"));
 	        	

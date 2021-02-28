@@ -6,7 +6,9 @@ export const environment = {
 	production: false
 };
 
-export const host: string = 'localhost:8080';
+export const host: string = 'http://localhost:8080';
+export const homePageUrl: string = 'http://localhost:8080';
+export const urlHotelBase: string = 'http://localhost:8081';
 
 /*
  * For easier debugging in development mode, you can import the following file

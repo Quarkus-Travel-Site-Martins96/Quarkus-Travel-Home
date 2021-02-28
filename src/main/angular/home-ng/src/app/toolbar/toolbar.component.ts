@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { homePageUrl } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css']
+	selector: 'app-toolbar',
+	templateUrl: './toolbar.component.html',
+	styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
-  constructor() { }
+	homeUrl: string = homePageUrl;
 
-  ngOnInit(): void {
-  }
+	constructor() { }
+
 
 }
