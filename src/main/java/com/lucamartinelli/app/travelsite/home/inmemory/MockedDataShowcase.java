@@ -6,6 +6,9 @@ import java.util.List;
 import com.lucamartinelli.app.travelsite.home.vo.ShowcaseProductVO;
 import com.lucamartinelli.app.travelsite.home.vo.ShowcaseVO;
 
+/**
+ * Simply mocked data for showcase section
+ */
 public class MockedDataShowcase {
 	
 	private static final ShowcaseVO SHOWCASE_1 = new ShowcaseVO(List.of(

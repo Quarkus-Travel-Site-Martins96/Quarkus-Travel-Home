@@ -24,6 +24,8 @@ public class HomeOfferTest {
 					.statusCode(200)
 					.extract().as(OffersVO.class);
 			
+		// Check if the call with 'IN_MEMORY' data returned the expected data (registered 3 products)
+		
 		assertNotNull(resp, "Response is null");
 		assertNotNull(resp.getProducts());
 		assertEquals(3, resp.getProducts().size(), "Mocked products are not 3!");

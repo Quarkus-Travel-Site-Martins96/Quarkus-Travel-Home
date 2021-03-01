@@ -22,6 +22,13 @@ import com.lucamartinelli.app.travelsite.home.ejb.HomeInMemoryEJB;
 import com.lucamartinelli.app.travelsite.home.vo.OffersVO;
 import com.lucamartinelli.app.travelsite.home.vo.ShowcaseVO;
 
+/**
+ * @author Luca Martinelli
+ * @category REST APIs
+ * 
+ * This class is the REST APIs manager, exposer and logic caller
+ *
+ */
 @Path("/home")
 @ApplicationScoped
 public class Home {
@@ -37,6 +44,7 @@ public class Home {
 	@Context
 	private HttpServletResponse servletResponse;
 	
+	/** This EJB will be initialized based property 'home.mode' */
 	private HomeEJB ejb = null;
 	
 	@PostConstruct

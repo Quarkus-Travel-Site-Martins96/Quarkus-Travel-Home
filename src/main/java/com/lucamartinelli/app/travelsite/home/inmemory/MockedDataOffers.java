@@ -5,6 +5,9 @@ import java.util.List;
 import com.lucamartinelli.app.travelsite.home.vo.OfferProductVO;
 import com.lucamartinelli.app.travelsite.home.vo.OffersVO;
 
+/**
+ * Simply mocked data for offers section
+ */
 public class MockedDataOffers {
 	
 	private static final OffersVO OFFERS_1 = new OffersVO(List.of(

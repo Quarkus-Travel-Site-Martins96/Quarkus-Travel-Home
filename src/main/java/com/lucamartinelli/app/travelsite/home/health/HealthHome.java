@@ -13,6 +13,10 @@ import org.eclipse.microprofile.health.Readiness;
 @Readiness
 public class HealthHome implements HealthCheck{
 	
+	/**
+	 * Register home-service-check name as check observable.
+	 * This method is used to check if the application is up and running
+	 */
 	@Override
 	public HealthCheckResponse call() {
 		final String mode = ConfigProvider.getConfig()
