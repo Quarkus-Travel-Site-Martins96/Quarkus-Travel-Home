@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { homePageUrl } from 'src/environments/environment';
+import { homePageUrl, loginPageUrl } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-toolbar',
@@ -9,6 +9,7 @@ import { homePageUrl } from 'src/environments/environment';
 export class ToolbarComponent {
 
 	homeUrl: string = homePageUrl;
+	loginUrl: string = loginPageUrl;
 
 	constructor() { }
 

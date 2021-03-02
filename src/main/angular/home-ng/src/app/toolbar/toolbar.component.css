@@ -1,6 +1,6 @@
 .toolbar {
 	height: 40px;
-	background-color: #66f;
+	background-color: #111;
 	display: flex;
 	justify-content: flex-start;
 	padding: 10px;
@@ -23,7 +23,7 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-	color: black;
+	color: lime;
 	font-style: normal;
 	text-decoration: none;
 }
