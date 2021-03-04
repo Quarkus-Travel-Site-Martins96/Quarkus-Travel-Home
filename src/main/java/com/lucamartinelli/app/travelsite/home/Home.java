@@ -72,15 +72,16 @@ public class Home {
     public ShowcaseVO getShowcase() {
     	if (ejb == null) {
     		log.error("Error in configuration HOME EJB!");
-    		try {
-				servletResponse.sendError(503, "Service Unavailable. Wrong Configurations");
-			} catch (IOException e) {
-				log.error(e);
-				throw new RuntimeException(e);
-			}
+    		setError(503, "Service Unavailable. Wrong Configurations");
     		return null;
     	}
-    	return ejb.getShowcase();
+    	try {
+    		return ejb.getShowcase();
+    	} catch (RuntimeException e) {
+        	log.error("Error during execution getShowcase() ", e);
+        	setError(500, "Internal server error");
+        	return null;
+		}
     }
     
     @GET
@@ -89,15 +90,26 @@ public class Home {
     public OffersVO getOffers() {
     	if (ejb == null) {
     		log.error("Error in configuration HOME EJB!");
-    		try {
-				servletResponse.sendError(503, "Service Unavailable. Wrong Configurations");
-			} catch (IOException e) {
-				log.error(e);
-				throw new RuntimeException(e);
-			}
+    		setError(503, "Service Unavailable. Wrong Configurations");
     		return null;
     	}
-    	return ejb.getOffers();
+    	try {
+    		return ejb.getOffers();
+    	} catch (RuntimeException e) {
+        	log.error("Error during execution getOffers() ", e);
+        	setError(500, "Internal server error");
+        	return null;
+		}
+    }
+    
+    
+    private void setError(int error, String msg) {
+    	try {
+			servletResponse.sendError(error, msg);
+		} catch (IOException e) {
+			log.error(e);
+			throw new RuntimeException(e);
+		}
     }
     
 }
