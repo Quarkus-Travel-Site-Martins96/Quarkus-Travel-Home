@@ -8,6 +8,7 @@
 			<div *ngFor="let off of offers.products" class="product">
 				<a [href]='urlHotel + off.hotelID'>
 					<div class="product-section">
+						<img class="offer-ribbon" src="/assets/images/offer-ribbon.png">
 						<img class="hotel-preview" [src]='off.image'
 							[alt]='"MyHotel" + off.title' />
 					</div>

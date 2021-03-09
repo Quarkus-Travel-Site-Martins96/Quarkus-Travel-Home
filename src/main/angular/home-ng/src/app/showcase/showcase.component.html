@@ -3,7 +3,7 @@
 		<h3>Our showcase</h3>
 	</div>
 
-	<div class="content">
+	<div class="content" [style]="homeBgImg">
 		<div *ngFor="let prod of showcase.products" class="product">
 			<a [href]='urlHotel + prod.hotelID'>
 				<div class="product-section">

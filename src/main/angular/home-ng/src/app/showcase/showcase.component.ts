@@ -17,6 +17,7 @@ export class ShowcaseComponent implements OnInit {
 	showcase: ShowcaseVO = new ShowcaseVO();
 	error: string;
 	urlHotel: string = urlHotelBase + '/?hotel-id=';
+	homeBgImg: string;
 	
 	
 	private sub: Subscription;
@@ -27,6 +28,8 @@ export class ShowcaseComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
+		this.homeBgImg = "background-image:url('./assets/background/showcase" + this.getRandomInt(5) + ".jpg');";
+		
 		if (this.showcase) {
 			if (this.sub)
 				this.sub.unsubscribe();
@@ -41,5 +44,12 @@ export class ShowcaseComponent implements OnInit {
 			});
 		}
 			
+	}
+	
+	
+
+
+	private getRandomInt(max: number): number {
+		return Math.floor(Math.random() * Math.floor(max)) + 1;
 	}
 }
