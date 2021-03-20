@@ -29,6 +29,11 @@
 	src: url('Stanberry.ttf');
 }
 
+@font-face {
+	font-family: title-font;
+	src: url('Retrow Mentho.ttf');
+}
+
 html, body {
   font-family: luois-sans;
   margin: 0;
