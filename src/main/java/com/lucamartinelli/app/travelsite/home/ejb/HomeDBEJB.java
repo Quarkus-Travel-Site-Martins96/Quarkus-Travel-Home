@@ -43,6 +43,9 @@ public class HomeDBEJB implements HomeEJB {
 		
 		final List<ShowcaseProductVO> products = new ArrayList<>();
 		
+		log.debug(dataSource.getConfiguration().connectionPoolConfiguration()
+				.connectionFactoryConfiguration().jdbcUrl());
+		
 		log.debug("Connecting to database...");
 		try(final Connection conn = dataSource.getConnection();
 				final Statement stmt = conn.createStatement();) {
