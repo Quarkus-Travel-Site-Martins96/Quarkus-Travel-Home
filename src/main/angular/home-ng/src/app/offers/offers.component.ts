@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RestService } from '../rest-service';
-import { host } from '../../environments/environment';
+import { Environment } from '../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { OfferVO } from '../vo/offer-vo';
-import { urlHotelBase } from 'src/environments/environment.prod';
-
-
-const homeUrl: string =  host + '/home/offers';
 
 
 @Component({
@@ -16,14 +12,18 @@ const homeUrl: string =  host + '/home/offers';
 	styleUrls: ['./offers.component.css']
 })
 export class OffersComponent implements OnInit {
+	
+	private homeUrl: string =  Environment.getHomeHost() + '/home/offers';
+	urlHotel: string;
+	
 	offers: OfferVO = new OfferVO();
 	error: string;
-	urlHotel: string = urlHotelBase + '/?hotel-id=';
 	
 	private sub: Subscription;
 
 	constructor(private rest: RestService) {
-
+		console.log("costruttore di offerte");
+		this.urlHotel = Environment.getHotelHost() + "/?hotel-id=";
 	}
 
 	ngOnInit(): void {
@@ -31,7 +31,9 @@ export class OffersComponent implements OnInit {
 			if (this.sub)
 				this.sub.unsubscribe();
 				
-			this.sub = this.rest.sendGet<OfferVO>(homeUrl, new HttpHeaders({
+			console.log("prendo le offerte");
+				
+			this.sub = this.rest.sendGet<OfferVO>(this.homeUrl, new HttpHeaders({
 				'content-type': 'application/json'
 			})).subscribe(r => {
 				this.offers = r.body;
