@@ -52,7 +52,7 @@ public class EndpointUrl {
 	@GET
 	@Path("/user-management")
 	public String getUserManagement() {
-		return conf.getOptionalValue("endpoint.home", String.class).orElse("http://localhost:7071");
+		return conf.getOptionalValue("endpoint.usermanagement", String.class).orElse("http://localhost:7071");
 	}
 	
 	

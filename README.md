@@ -28,11 +28,13 @@ Backend APIs:
 ### Packaging and running the application
 
 Build Front End part: inside folder /src/main/angular/home-ng
+
 ```shell script
 ng build
 ```
 
 The application can be packaged using:
+
 ```shell script
 ./mvnw package
 ```
@@ -40,6 +42,7 @@ It produces the `home-quarkus-travel-1.0.0-SNAPSHOT-runner.jar` file in the `/ta
 Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
 
 If you want to build an _über-jar_, execute the following command:
+
 ```shell script
 ./mvnw package -Dquarkus.package.type=uber-jar
 ```
@@ -49,11 +52,13 @@ The application is now runnable using `java -jar target/home-quarkus-travel-1.0.
 ### Creating a native executable
 
 You can create a native executable using: 
+
 ```shell script
 ./mvnw package -Pnative
 ```
 
 Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
+
 ```shell script
 ./mvnw package -Pnative -Dquarkus.native.container-build=true
 ```
@@ -61,6 +66,44 @@ Or, if you don't have GraalVM installed, you can run the native executable build
 You can then execute your native executable with: `./target/home-quarkus-travel-1.0.0-SNAPSHOT-runner`
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.html.
+
+### Building for Openshift
+
+#### Build and deploy for Openshift platform
+
+In order to build the application on Openshift you can enable the property: `quarkus.kubernetes.deploy=true`
+
+And run in a logged in shell:
+
+```shell script
+./mvnw package
+```
+
+you can also pass the property directlly in the shell command:
+
+```shell script
+./mvnw package -Dquarkus.kubernetes.deploy=true
+```
+
+#### Configure the Endpoints
+
+Create a ConfigMap for declare the API Endpoints, the config should be like:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: example
+  namespace: travelsite
+data:
+  endpoint.home: "home.endpoint.example.com"
+  endpoint.hotel: "hotel.endpoint.example.com"
+  endpoint.login: "login.endpoint.example.com"
+  endpoint.registration: "registration.endpoint.example.com"
+  endpoint.usermanagement: "usermanagement.endpoint.example.com"
+
+```
+
 
 ### Technologies in project
 
