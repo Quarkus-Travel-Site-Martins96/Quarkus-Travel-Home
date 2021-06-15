@@ -96,11 +96,11 @@ metadata:
   name: example
   namespace: travelsite
 data:
-  endpoint.home: "home.endpoint.example.com"
-  endpoint.hotel: "hotel.endpoint.example.com"
-  endpoint.login: "login.endpoint.example.com"
-  endpoint.registration: "registration.endpoint.example.com"
-  endpoint.usermanagement: "usermanagement.endpoint.example.com"
+  endpoint.home: "http://home.endpoint.example.com"
+  endpoint.hotel: "http://hotel.endpoint.example.com"
+  endpoint.login: "http://login.endpoint.example.com"
+  endpoint.registration: "http://registration.endpoint.example.com"
+  endpoint.usermanagement: "http://usermanagement.endpoint.example.com"
 
 ```
 

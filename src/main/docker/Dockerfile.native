@@ -1,27 +1,27 @@
-####
-# This Dockerfile is used in order to build a container that runs the Quarkus application in native (no JVM) mode
-#
-# Before building the container image run:
-#
-# ./mvnw package -Pnative
-#
-# Then, build the image with:
-#
-# docker build -f src/main/docker/Dockerfile.native -t quarkus/home-quarkus-travel .
-#
-# Then run the container using:
-#
-# docker run -i --rm -p 8080:8080 quarkus/home-quarkus-travel
-#
-###
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3
+## Stage 1 : build with maven builder image with native capabilities
+FROM quay.io/quarkus/centos-quarkus-maven:21.1.0-java11 AS build
+WORKDIR /project
+ADD pom.xml /project
+RUN mvn -f /project/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
+COPY src /project
+USER root
+RUN chown -R quarkus /project
+USER quarkus
+RUN mvn -f /project/pom.xml -Pnative clean package
+
+## Stage 2 : create the docker final image
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work/
-RUN chown 1001 /work \
-    && chmod "g+rwX" /work \
-    && chown 1001:root /work
-COPY --chown=1001:root target/*-runner /work/application
+COPY --from=build /project/target/*-runner /work/application
+
+# set up permissions for user `1001`
+RUN chmod 775 /work /work/application \
+  && chown -R 1001 /work \
+  && chmod -R "g+rwX" /work \
+  && chown -R 1001:root /work
 
 EXPOSE 8080
 USER 1001
 
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+

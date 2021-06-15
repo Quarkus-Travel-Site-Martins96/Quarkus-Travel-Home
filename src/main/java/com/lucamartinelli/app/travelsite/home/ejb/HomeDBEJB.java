@@ -78,8 +78,7 @@ public class HomeDBEJB implements HomeEJB {
 	 * Fallback method, if the showcase main method fails this will be called 
 	 * and returned an empty object
 	 */
-	@SuppressWarnings("unused")
-	private ShowcaseVO showcaseFallback() {
+	public ShowcaseVO showcaseFallback() {
 		log.debug("Showcase fallback called");
 		return new ShowcaseVO();
 	}
@@ -126,8 +125,7 @@ public class HomeDBEJB implements HomeEJB {
 	 * Fallback method, if the offers main method fails this will be called 
 	 * and returned an empty object
 	 */
-	@SuppressWarnings("unused")
-	private OffersVO offersFallback() {
+	public OffersVO offersFallback() {
 		log.debug("Offers fallback called");
 		return new OffersVO();
 	}
