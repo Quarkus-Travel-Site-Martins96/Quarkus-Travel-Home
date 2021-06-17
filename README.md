@@ -1,6 +1,6 @@
 # Home Quarkus Travel project
 
-![Docker Build Status](https://img.shields.io/docker/cloud/build/martins96/quarkus-travel-home)
+![Docker Build Status](https://img.shields.io/docker/cloud/build/martins96/home-travel-site)
 
 <i>This project uses Quarkus, the Supersonic Subatomic Java Framework.
 If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .</i>
