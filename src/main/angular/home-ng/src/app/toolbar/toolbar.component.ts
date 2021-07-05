@@ -18,6 +18,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 	homeUrl: string = Environment.getHomeHost();
 	loginUrl: string = Environment.getLoginHost();
 	userManagementUrl: string = Environment.getUserManagerHost();
+	registrationUrl: string = Environment.getRegistrationHost();
 
 	jwt: JWT = new JWT();
 	cookieJWT: string;

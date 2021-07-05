@@ -40,4 +40,8 @@ export class Environment {
 		return "http://localhost:7071";
 	}
 	
+	public static getRegistrationHost(): string {
+		return "http://localhost:7171";
+	}
+	
 }
