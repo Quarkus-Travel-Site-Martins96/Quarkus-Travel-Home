@@ -51,7 +51,7 @@ public class HealthHome implements HealthCheck {
 		}
 		
 		
-		return bldr.state(configuredDone && db)
+		return bldr.status(configuredDone && db)
 				.build();
 	}
 
