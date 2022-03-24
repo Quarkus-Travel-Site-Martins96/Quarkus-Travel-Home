@@ -49,7 +49,7 @@ public class HomeDBEJB implements HomeEJB {
 		log.debug("Connecting to database...");
 		try(final Connection conn = dataSource.getConnection();
 				final Statement stmt = conn.createStatement();) {
-
+			
 	        log.debug("Executing query: " + SQL_QUERY_SHOWCASE);
 	        final ResultSet rs = stmt.executeQuery(SQL_QUERY_SHOWCASE);
 	        log.debug("Query executed success");

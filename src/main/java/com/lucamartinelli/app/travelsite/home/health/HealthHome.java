@@ -59,7 +59,7 @@ public class HealthHome implements HealthCheck {
 	private boolean checkDBHealth() {
 		try {
 			final AgroalDataSource db = CDI.current().select(AgroalDataSource.class).get();
-			if (db.getConnection().isValid(10000))
+			if (db.isHealthy(false))
 				return true;
 		} catch (SQLException | IllegalArgumentException | IllegalStateException e) {
 			log.error("Error during check DB health: ", e);
