@@ -1,5 +1,5 @@
 ## Stage 1 : build with maven builder image with native capabilities
-FROM quay.io/quarkus/centos-quarkus-maven:21.1.0-java11 AS build
+FROM quay.io/quarkus/centos-quarkus-maven:22.0.0-java11 AS build
 WORKDIR /project
 ADD pom.xml /project
 RUN mkdir src && mvn -f /project/pom.xml -B de.qaware.maven:go-offline-maven-plugin:1.2.5:resolve-dependencies
@@ -14,7 +14,7 @@ RUN mv quarkus-run.jar app.jar \
 	&& mv app.tar.gz ../../app.tar.gz
 
 ## Stage 2 : running container
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.3 
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.5-240
 
 ARG JAVA_PACKAGE=java-11-openjdk-headless
 ARG RUN_JAVA_VERSION=1.3.8
