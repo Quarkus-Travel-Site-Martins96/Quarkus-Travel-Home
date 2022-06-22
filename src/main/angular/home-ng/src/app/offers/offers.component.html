@@ -1,4 +1,4 @@
-<div class="offers">
+<div class="offers" *ngIf="!isLoading && !error">
 	<div class="title">
 		<h3>Our best offers!</h3>
 	</div>
@@ -32,4 +32,10 @@
 			<div class="clear">&nbsp;</div>
 		</div>
 	</div>
+</div>
+<div *ngIf="isLoading" class="loading-image">
+	<img src="/assets/images/loading.gif" title="loading"/>
+</div>
+<div *ngIf="error">
+	<h2>{{ error }}</h2>
 </div>

@@ -95,3 +95,12 @@ img {
 	max-width: 80px;
 	z-index: 2;
 }
+
+.loading-image {
+	position: relative;
+	left: calc(50% - 100px);
+}
+
+.loading-image img {
+	width: 200px;
+}
