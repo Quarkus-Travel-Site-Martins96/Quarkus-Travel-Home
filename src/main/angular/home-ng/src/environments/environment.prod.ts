@@ -42,7 +42,6 @@ export class Environment {
 	}
 	
 	public static getRegistrationHost(): string {
-		console.log("GAZZO1");
 		if (!this.singleton.registrationHost)
 			this.singleton.registrationHost = RestServiceEnvUrl.getHostUrl('registration');
 		return this.singleton.registrationHost;

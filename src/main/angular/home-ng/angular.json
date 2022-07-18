@@ -17,7 +17,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
           	"baseHref" : "/",
-          	"deployUrl": "/",
             "outputPath": "../../resources/META-INF/resources",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -60,19 +59,28 @@
                   "maximumError": "200kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "home-ng:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "home-ng:build:production"
+            },
+            "development": {
+              "browserTarget": "home-ng:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
