@@ -13,7 +13,8 @@
 					<a [href]="userManagementUrl">Edit user</a>
 					<a [href]="homeUrl" (click)="logout()">Logout</a>
 				</div>
-				<img [src]="jwt.avatar" [alt]="jwt.name" />
+				<img [src]="jwt.avatar" [alt]="jwt.name" *ngIf="jwt.avatar" />
+				<img [src]="DEFAULT_AVATAR" [alt]="jwt.name" *ngIf="!jwt.avatar" />
 			</div>
 		</nav>
 	</div>
