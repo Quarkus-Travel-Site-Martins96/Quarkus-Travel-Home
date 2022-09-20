@@ -19,7 +19,6 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 	homeUrl: string = Environment.getHomeHost();
 	loginUrl: string = Environment.getLoginHost();
 	userManagementUrl: string = Environment.getUserManagerHost();
-	registrationUrl: string = Environment.getRegistrationHost();
 	staticContentHost: string = Environment.getStaticContentHost();
 
 	jwt: JWT = new JWT();
@@ -48,7 +47,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 						//JWT correct, setting the token information
 						this.jwt = resp.body;
 						// Loading avatar image
-						this.isUserAvatarSet();
+						this.userAvatarSetting();
 					})
 					.catch(error => {
 						//JWT non correct or service not available
@@ -82,48 +81,38 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 	}
 
 
-	private isUserAvatarSet(): void {
+	private userAvatarSetting(): void {
 		if (!this.cookieJWT) {
 			this.isAvatarExists = false;
 			return;
 		}
 
-		
-		const isAvatarExistsUrl = this.staticContentHost + "/avatarExists/" + this.jwt.avatar;
-		const obsv: Observable<HttpResponse<boolean>> = this.rest.sendGet<boolean>(isAvatarExistsUrl, new HttpHeaders({
-			'content-type': 'text/plain'
-		}))
-
-		firstValueFrom(obsv)
-				.then((resp) => {
-					if (resp.body) {
-						this.isAvatarExists = true;
-						this.getAvatar(this.jwt.avatar);
-					} else {
-						this.isAvatarExists = false;
-					}
-				})
-				.catch(error => {
-					console.error("Error getting avatar, returning false as default: ", error);
-					this.isAvatarExists = false;
-				});
+		this.isAvatarExists = false;
+		this.getAvatar(this.jwt.avatar);
 	}
 
 
 	async getAvatar(filename: string): Promise<void> {
 		const getAvatarUrl = this.staticContentHost + "/get/" + filename;
+		console.log("Getting avatar: " + getAvatarUrl);
 		const obsv: Observable<HttpResponse<Blob>> = this.rest.sendGetAvatar(getAvatarUrl)
 
 		await firstValueFrom(obsv)
 				.then((resp) => {
+					if (!resp || !resp.body) {
+						this.isAvatarExists = false;
+						return;
+					}
 					var reader = new FileReader();
  					reader.readAsDataURL(resp.body)
 					reader.onload = (_event) => {
 						this.avatarSrc = reader.result;
+						this.isAvatarExists = true;
 					}
 				})
 				.catch(error => {
 					console.error("Error getting avatar: ", error);
+					this.isAvatarExists = false;
 				});
 	}
 
